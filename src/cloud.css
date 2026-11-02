@@ -1,0 +1,65 @@
+/* Cloudinary：設定分頁、上傳對話框 */
+
+.cloud-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 13px;
+}
+.cloud-status.ok {
+  background: rgba(63, 182, 139, 0.12);
+}
+.cloud-status.ok .icon {
+  color: var(--done);
+}
+.cloud-status .btn {
+  margin-left: auto;
+}
+.cloud-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.cloud-progress {
+  margin: 12px 0;
+}
+.cloud-progress .bar {
+  height: 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.cloud-progress .bar > div {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.15s;
+}
+.cloud-list {
+  max-height: 220px;
+  overflow: auto;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.cloud-item {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.cloud-item:hover {
+  background: var(--hover);
+}
+.cloud-item input {
+  accent-color: var(--accent);
+}
