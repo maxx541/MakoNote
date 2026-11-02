@@ -27,7 +27,8 @@ function Thumb({ src, title, className }) {
   if (!src || failed) {
     return (
       <div className={className + ' thumb-empty'}>
-        <span>{(title || '?').slice(0, 1)}</span>
+        {/* 沒有封面：用標題的第一個字當底圖，跳過【《「 這類括號 */}
+        <span>{(title || '').replace(/^[\s【[《「『（(〈"'#]+/, '').slice(0, 1) || '?'}</span>
       </div>
     );
   }

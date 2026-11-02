@@ -2,9 +2,9 @@
 // 不用官方 SDK，直接呼叫 REST API（簽章上傳＋Admin API），金鑰由主程式傳進來，不會進到介面。
 //
 // 命名與還原的設計（為了「以後能從 Cloudinary 把所有東西準確放回原位」）：
-//   public_id   galnote/<文章編號>/<檔案在文章資料夾內的路徑>   編號固定，改標題也不影響
+//   public_id   makonote/<文章編號>/<檔案在文章資料夾內的路徑>   編號固定，改標題也不影響
 //   display_name  <標題>_圖N（N 是圖片在文中出現的順序）     在 Cloudinary 後台看到的名稱
-//   tags        galnote、galnote-<文章編號>
+//   tags        makonote、makonote-<文章編號>
 //   context     article、title、dir（文章資料夾在文章庫的位置）、path（含副檔名的原始相對路徑）、sha1
 // 每個資產自己就記著放回哪裡，所以不靠任何本機檔案也能還原；文章本身（.md、原始排版、各格式版本）
 // 也以 raw 檔案一併備份。
@@ -13,7 +13,7 @@ const path = require('path');
 const crypto = require('crypto');
 const lib = require('./library.cjs');
 
-const PREFIX = 'galnote';
+const PREFIX = 'makonote';
 const IMAGE_EXT = new Set(['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'bmp', 'svg', 'tif', 'tiff']);
 const RAW_EXT = new Set(['md', 'txt', 'html', 'json']);
 const MAX_BYTES = 10 * 1024 * 1024; // 免費方案單檔上限

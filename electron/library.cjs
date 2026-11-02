@@ -183,6 +183,9 @@ function plainText(md) {
     .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
     .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
     .replace(/<[^>]+>/g, ' ')
+    // 同段換行在 Markdown 裡是行尾的反斜線，摘要裡不要顯示出來；其他跳脫字元只留字本身
+    .replace(/\\(?=\r?\n)/g, ' ')
+    .replace(/\\([\\`*_{}[\]()#+.!-])/g, '$1')
     .replace(/\s\^b-[a-z0-9]+\b/g, '')
     .replace(/^[#>\-*+\s]+|[*_`~|]/gm, '')
     .replace(/\s+/g, ' ')
@@ -298,7 +301,8 @@ function buildSummary(root, file, owns, text, stat) {
     folder: toRel(root, owns ? path.dirname(dirAbs) : dirAbs),
     ownsDir: owns,
     meta: normalizeMeta(meta, fallback),
-    excerpt: plain.slice(0, 160),
+    // 內文開頭常是和標題一樣的大標題，摘要裡不用再重複一次
+    excerpt: (meta.title && plain.startsWith(meta.title) ? plain.slice(meta.title.length).trim() : plain).slice(0, 160),
     text: plain.slice(0, 20000),
     words: countWords(body),
     firstImage: firstImage(body),

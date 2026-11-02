@@ -266,6 +266,7 @@ export default function OcrDialog({ settings, onSettings, onInsert, onClose }) {
         {error && <div className="error">{error}</div>}
 
         <div className="modal-foot">
+          <span />
           <div className="row">
             <button className="btn" onClick={() => recognize(done)} disabled={busy || !images.length}>
               <Icon name="search" size={16} />

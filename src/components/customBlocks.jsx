@@ -96,7 +96,7 @@ function ImageRow({ block, editor }) {
           data-row-index={i}
           onDragStart={(e) => {
             e.stopPropagation();
-            e.dataTransfer.setData('application/x-galnote-rowimg', JSON.stringify({ block: block.id, index: i }));
+            e.dataTransfer.setData('application/x-makonote-rowimg', JSON.stringify({ block: block.id, index: i }));
             e.dataTransfer.effectAllowed = 'move';
           }}
         >

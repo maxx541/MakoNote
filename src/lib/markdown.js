@@ -4,8 +4,8 @@
 // 只有真的被連結的段落才會寫出錨點，平常的 Markdown 保持乾淨
 //   置中／靠右／有顏色的段落 → 單行 HTML（見 richtext.js）
 //   併排圖片 → 同一行連續的圖片語法：![](a.webp) ![](b.webp)
-//   內嵌影片 → 獨立一行的連結＋註解標記：[YouTube 影片](https://…) <!-- galnote:video {"aspect":"16:9"} -->
-//   書籤連結 → [標題](https://…) <!-- galnote:bookmark {"desc":"…"} -->（註解在別的軟體看不到，連結照樣能點）
+//   內嵌影片 → 獨立一行的連結＋註解標記：[YouTube 影片](https://…) <!-- makonote:video {"aspect":"16:9"} -->
+//   書籤連結 → [標題](https://…) <!-- makonote:bookmark {"desc":"…"} -->（註解在別的軟體看不到，連結照樣能點）
 //   提示框 → GitHub／Obsidian 的 callout 寫法：> [!NOTE] 換行 > 內容
 
 import { HTML_LINE, htmlLineToBlock, needsHtml, blockToHtml } from './richtext.js';
@@ -35,7 +35,7 @@ function inlineItems(content) {
 
 // ---------- Markdown → 方塊 ----------
 
-const EMBED_LINE = /^\s*\[([^\]]*)\]\(\s*<?([^)\s>]+)>?\s*\)\s*<!--\s*galnote:(video|bookmark)\s*(\{[\s\S]*?\})?\s*-->\s*$/;
+const EMBED_LINE = /^\s*\[([^\]]*)\]\(\s*<?([^)\s>]+)>?\s*\)\s*<!--\s*makonote:(video|bookmark)\s*(\{[\s\S]*?\})?\s*-->\s*$/;
 const CALLOUT_HEAD = /^\s*>\s*\[!(note|tip|important|warning|caution)\]\s*(.*)$/i;
 const FENCE = /^\s*(```|~~~)/;
 
@@ -272,14 +272,14 @@ function customToMarkdown(editor, b) {
     if (b.props.aspect && (!info || b.props.aspect !== info.aspect)) attrs.aspect = b.props.aspect;
     if (Number(b.props.width)) attrs.width = Number(b.props.width);
     const label = info ? `${info.label} 影片` : '影片';
-    return `[${label}](${info ? info.watchUrl : b.props.url}) <!-- galnote:video ${writeAttrs(attrs)} -->`;
+    return `[${label}](${info ? info.watchUrl : b.props.url}) <!-- makonote:video ${writeAttrs(attrs)} -->`;
   }
   if (b.type === 'bookmark') {
     const attrs = {};
     if (b.props.desc) attrs.desc = b.props.desc;
     if (b.props.image) attrs.image = b.props.image;
     const title = (b.props.title || b.props.url).replace(/[[\]]/g, '').replace(/\s+/g, ' ');
-    return `[${title}](${b.props.url}) <!-- galnote:bookmark ${writeAttrs(attrs)} -->`;
+    return `[${title}](${b.props.url}) <!-- makonote:bookmark ${writeAttrs(attrs)} -->`;
   }
   if (b.type === 'callout') {
     // 依換行切成幾行，每行各自轉 Markdown，前面加「> 」

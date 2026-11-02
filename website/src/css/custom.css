@@ -1,0 +1,131 @@
+/* MakoNote 網站：深色、與程式本身同一套顏色 */
+
+:root {
+  --mk-bg: #0a0c12;
+  --mk-surface: #11141c;
+  --mk-surface-2: #161a24;
+  --mk-line: rgba(255, 255, 255, 0.08);
+  --mk-line-strong: rgba(255, 255, 255, 0.16);
+  --mk-text: #e9ebf1;
+  --mk-muted: #9aa3b6;
+  --mk-faint: #7f889b;
+  --mk-accent: #8fb2ff;
+  --mk-accent-rgb: 143, 178, 255;
+  --mk-sakura: #f2a7c6;
+  --mk-serif: 'Noto Serif TC', 'Source Han Serif TC', 'PMingLiU', serif;
+  --mk-sans: 'Noto Sans TC', 'Microsoft JhengHei', system-ui, sans-serif;
+
+  --ifm-font-family-base: var(--mk-sans);
+  --ifm-heading-font-family: var(--mk-sans);
+  --ifm-color-primary: #8fb2ff;
+  --ifm-color-primary-dark: #6e99fb;
+  --ifm-color-primary-darker: #5f8efa;
+  --ifm-color-primary-darkest: #2f6af7;
+  --ifm-color-primary-light: #b0c9ff;
+  --ifm-color-primary-lighter: #c0d4ff;
+  --ifm-color-primary-lightest: #e8efff;
+  --ifm-code-font-size: 92%;
+  --ifm-navbar-height: 64px;
+  --ifm-line-height-base: 1.75;
+}
+
+[data-theme='dark'] {
+  --ifm-background-color: var(--mk-bg);
+  --ifm-background-surface-color: var(--mk-surface);
+  --ifm-navbar-background-color: rgba(10, 12, 18, 0.92);
+  --ifm-footer-background-color: #07080c;
+  --ifm-color-content: var(--mk-text);
+  --ifm-color-content-secondary: var(--mk-muted);
+  --ifm-toc-border-color: var(--mk-line);
+  --ifm-hr-border-color: var(--mk-line);
+  --ifm-table-border-color: var(--mk-line-strong);
+  --ifm-table-stripe-background: rgba(255, 255, 255, 0.02);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+html {
+  background: var(--mk-bg);
+}
+
+.navbar {
+  border-bottom: 1px solid var(--mk-line);
+  box-shadow: none;
+}
+.navbar__brand {
+  gap: 2px;
+}
+.navbar__logo img {
+  border-radius: 8px;
+}
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.navbar__link {
+  font-weight: 500;
+  color: var(--mk-muted);
+}
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--mk-text);
+}
+
+/* 右上的下載按鈕 */
+.navbar-download {
+  margin-left: 8px;
+  padding: 6px 16px !important;
+  border-radius: 999px;
+  background: var(--mk-accent);
+  color: #0a0c12 !important;
+  font-weight: 700;
+}
+.navbar-download:hover {
+  background: #b0c9ff;
+}
+.navbar-download svg {
+  display: none;
+}
+
+/* 文件頁 */
+.markdown h1 {
+  font-family: var(--mk-serif);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+.markdown img {
+  border-radius: 10px;
+  border: 1px solid var(--mk-line);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+.markdown kbd {
+  font-family: var(--mk-sans);
+  font-size: 0.82em;
+  padding: 1px 7px;
+  border-radius: 5px;
+  border: 1px solid var(--mk-line-strong);
+  border-bottom-width: 2px;
+  background: var(--mk-surface-2);
+  color: var(--mk-text);
+  box-shadow: none;
+}
+.markdown table {
+  display: table;
+  width: 100%;
+}
+.menu__link {
+  font-weight: 500;
+}
+
+.footer,
+.footer--dark {
+  --ifm-footer-background-color: #07080c;
+  border-top: 1px solid var(--mk-line);
+}
+.footer__copyright {
+  color: var(--mk-faint);
+  font-size: 13px;
+}
+
+::selection {
+  background: rgba(var(--mk-accent-rgb), 0.35);
+}

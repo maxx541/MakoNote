@@ -2881,3 +2881,14 @@ textarea.ocr-text:focus {
   margin: 0;
   padding: 12px 20px;
 }
+
+/* 側欄的長標籤只顯示一行，滑過去看全名 */
+.tag-cloud .chip {
+  max-width: 100%;
+}
+.chip-t {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

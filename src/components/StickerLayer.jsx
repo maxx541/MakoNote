@@ -23,8 +23,13 @@ export default function StickerLayer({ files, corner, size, opacity, trigger, wi
   const [pick, setPick] = useState(null);
   const [hidden, setHidden] = useState(false);
   const imgRef = useRef(null);
+  // files 每次重繪都是新陣列；用內容當依據，拉設定拉桿（大小、透明度）時才不會一直重新抽圖
+  const filesKey = files.join('|');
+  const filesRef = useRef(files);
+  filesRef.current = files;
 
   useEffect(() => {
+    const files = filesRef.current;
     if (!files.length) {
       setPick(null);
       return;

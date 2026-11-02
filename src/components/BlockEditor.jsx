@@ -588,7 +588,7 @@ export default function BlockEditor({ articleRel, baseDir, body, sourceHtml, onE
 
   function dragged(e) {
     const types = [...(e.dataTransfer ? e.dataTransfer.types : [])];
-    if (types.includes('application/x-galnote-rowimg')) return { kind: 'rowimg' };
+    if (types.includes('application/x-makonote-rowimg')) return { kind: 'rowimg' };
     if (types.includes('blocknote/html')) {
       // 從左邊的拖曳把手拖的時候，選取範圍會連同後面那個段落的開頭一起選進來；只看最前面連續的圖片方塊。
       // 放開的瞬間選取已經被清掉，所以拖曳途中算好的結果先存起來
@@ -704,7 +704,7 @@ export default function BlockEditor({ articleRel, baseDir, body, sourceHtml, onE
     e.stopPropagation();
     let data;
     try {
-      data = JSON.parse(e.dataTransfer.getData('application/x-galnote-rowimg'));
+      data = JSON.parse(e.dataTransfer.getData('application/x-makonote-rowimg'));
     } catch {
       return;
     }

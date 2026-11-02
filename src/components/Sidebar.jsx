@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Icon from './Icon.jsx';
 import { STATUSES, matchRule } from '../lib/query.js';
 
-const DRAG_TYPE = 'application/x-galnote-article';
+const DRAG_TYPE = 'application/x-makonote-article';
 
 export function startArticleDrag(e, rel) {
   e.dataTransfer.setData(DRAG_TYPE, rel);
@@ -182,7 +182,9 @@ export default function Sidebar({
             <div className="tag-cloud">
               {facets.tags.slice(0, 40).map(([t, n]) => (
                 <button key={t} className={'chip' + (is('tag', t) ? ' on' : '')} onClick={() => setSel({ kind: 'tag', value: t })}>
-                  #{t}
+                  <span className="chip-t" title={'#' + t}>
+                    #{t}
+                  </span>
                   <span className="chip-n">{n}</span>
                 </button>
               ))}
