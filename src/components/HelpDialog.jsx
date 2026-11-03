@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
 import logo from '../assets/logo.png';
 import shelf from '../assets/help/shelf.webp';
@@ -22,6 +23,7 @@ const FEATURES = [
       <>寫文章時按「連結作品」，從 VNDB、Bangumi 帶入封面與資料；上方「配對作品」可一次配很多篇。</>,
       <><K>Ctrl</K> + <K>K</K> 搜尋整個文章庫，<K>Ctrl</K> + <K>B</K> 收起側邊欄。</>,
       <>把文章拖到左邊的資料夾就會搬移檔案。</>,
+      <>文章就是你資料夾裡的 Markdown，不開 MakoNote 用記事本也讀得到。按右上角「新增文章」開始寫。</>,
     ],
   },
   {
@@ -82,8 +84,25 @@ const FEATURES = [
   },
 ];
 
-// 使用說明：第一次進入會自動跳出，之後按標題列的「？」再打開
+// 使用說明：一頁一個功能，用「上一頁／下一頁」翻。第一次進入會自動跳出，之後按標題列的「？」再打開
 export default function HelpDialog({ onClose }) {
+  const [page, setPage] = useState(0);
+  const last = FEATURES.length - 1;
+  const f = FEATURES[page];
+  const go = (n) => setPage(Math.max(0, Math.min(last, n)));
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight') setPage((p) => Math.min(last, p + 1));
+      else if (e.key === 'ArrowLeft') setPage((p) => Math.max(0, p - 1));
+      else if (e.key === 'Escape') onClose();
+      else return;
+      e.preventDefault();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [last, onClose]);
+
   return (
     <div className="modal-wrap" onMouseDown={onClose}>
       <div className="modal help-modal" onMouseDown={(e) => e.stopPropagation()}>
@@ -98,31 +117,44 @@ export default function HelpDialog({ onClose }) {
           </button>
         </div>
         <div className="help-body">
-          <p className="help-intro">
-            你的文章就是你選的資料夾裡的 Markdown：一篇一個資料夾，圖片放旁邊。不開 MakoNote，用記事本也讀得到。按右上角「新增文章」開始寫。
-          </p>
-          {FEATURES.map((f) => (
-            <section key={f.title} className="help-feature">
-              <figure>
-                <img src={f.img} alt={f.title} loading="lazy" />
-              </figure>
-              <div>
-                <h3>{f.title}</h3>
-                <p className="help-lead">{f.lead}</p>
-                <ul>
-                  {f.points.map((p, i) => (
-                    <li key={i}>{p}</li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-          ))}
+          <section className="help-feature" key={page}>
+            <figure>
+              <img src={f.img} alt={f.title} />
+            </figure>
+            <div>
+              <p className="help-step">
+                {page + 1} / {FEATURES.length}
+              </p>
+              <h3>{f.title}</h3>
+              <p className="help-lead">{f.lead}</p>
+              <ul>
+                {f.points.map((p, i) => (
+                  <li key={i}>{p}</li>
+                ))}
+              </ul>
+            </div>
+          </section>
         </div>
-        <div className="modal-foot">
-          <span className="muted small">之後想再看，按右上角的「？」。</span>
-          <button className="btn primary" onClick={onClose}>
-            開始使用
+        <div className="modal-foot help-foot">
+          <button className="btn" onClick={() => go(page - 1)} disabled={page === 0}>
+            <Icon name="back" size={16} />
+            上一頁
           </button>
+          <div className="help-dots" role="tablist" aria-label="頁碼">
+            {FEATURES.map((x, i) => (
+              <button key={x.title} className={i === page ? 'on' : ''} onClick={() => go(i)} title={x.title} aria-label={x.title} aria-selected={i === page} role="tab" />
+            ))}
+          </div>
+          {page < last ? (
+            <button className="btn primary" onClick={() => go(page + 1)}>
+              下一頁
+              <Icon name="chevron" size={16} />
+            </button>
+          ) : (
+            <button className="btn primary" onClick={onClose}>
+              開始使用
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -2879,26 +2879,34 @@ textarea.ocr-text:focus {
   text-overflow: ellipsis;
 }
 
-/* 使用說明：一個功能一張圖 */
-.help-intro {
-  margin: 14px 0 4px;
-  color: var(--muted);
-  font-size: 13.5px;
-  line-height: 1.7;
+/* 使用說明：一頁一個功能 */
+.help-modal {
+  width: min(1040px, 100%);
+}
+.help-body {
+  min-height: min(470px, 62vh);
+  display: flex;
+  align-items: center;
 }
 .help-feature {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: 22px;
-  align-items: start;
-  padding: 22px 0;
-  border-top: 1px solid var(--line);
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  width: 100%;
+  padding: 18px 0;
+  animation: help-in 0.22s ease-out;
 }
-.help-feature:first-of-type {
-  border-top: 0;
+@keyframes help-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
 }
-.help-feature:nth-of-type(even) figure {
-  order: 2;
+@media (prefers-reduced-motion: reduce) {
+  .help-feature {
+    animation: none;
+  }
 }
 .help-feature figure {
   margin: 0;
@@ -2912,31 +2920,59 @@ textarea.ocr-text:focus {
   width: 100%;
   height: auto;
 }
+.help-step {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
 .help-feature h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
+  margin: 0 0 12px;
+  font-size: 20px;
+  line-height: 1.4;
   color: var(--accent);
 }
 .help-lead {
-  margin: 0 0 10px;
-  font-size: 14px;
-  line-height: 1.75;
+  margin: 0 0 14px;
+  font-size: 15.5px;
+  line-height: 1.8;
 }
 .help-feature ul {
   margin: 0;
-  padding-left: 18px;
+  padding-left: 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 9px;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.75;
 }
-@media (max-width: 760px) {
+.help-foot {
+  gap: 14px;
+}
+.help-dots {
+  display: flex;
+  gap: 9px;
+}
+.help-dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.help-dots button:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+.help-dots button.on {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+@media (max-width: 800px) {
   .help-feature {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .help-feature:nth-of-type(even) figure {
-    order: 0;
   }
 }
