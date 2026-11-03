@@ -18,7 +18,7 @@ import HelpDialog, { TAGLINE } from './components/HelpDialog.jsx';
 import logo from './assets/logo.png';
 import { inMode, MODE_LABEL } from './lib/kind.js';
 
-// Galgame／動畫收「主題」屬於它、或連結到該類作品的心得；部落格顯示全部
+// Galgame／動畫收「主題」屬於它、或連結到該類作品的文章；部落格顯示全部
 const VIEW_MODES = [
   { id: 'gal', icon: 'gal', label: 'Galgame' },
   { id: 'anime', icon: 'film', label: '動畫' },
@@ -186,13 +186,13 @@ export default function App() {
 
   const fuse = useMemo(() => buildSearch(data.articles, data.games), [data]);
 
-  // 目前模式裡的心得：側欄的數量、主題、標籤、篩選條件都以它為準，才不會切到 Galgame 還看到全部的數字
+  // 目前模式裡的文章：側欄的數量、主題、標籤、篩選條件都以它為準，才不會切到 Galgame 還看到全部的數字
   const mode = settings.view.mode;
   const scoped = useMemo(() => (mode === 'blog' ? data.articles : data.articles.filter((a) => inMode(a.meta, mode, data.games))), [data.articles, data.games, mode]);
   const scopedData = useMemo(() => ({ ...data, articles: scoped }), [data, scoped]);
   const facets = useMemo(() => collectFacets(scoped), [scoped]);
   // 搜尋一律從文章庫根目錄的全部文章找（不管在哪個模式），選了資料夾也看那個資料夾的全部文章；
-  // Galgame／動畫模式只用來分類書架，不限制搜尋與資料夾的範圍
+  // Galgame／動畫模式只用來分類作品牆，不限制搜尋與資料夾的範圍
   const base = query.trim() || sel.kind === 'folder' ? data.articles : scoped;
 
   const visible = useMemo(() => {
@@ -214,7 +214,7 @@ export default function App() {
   async function createArticle(extra = {}) {
     try {
       const folder = sel.kind === 'folder' ? sel.value : '';
-      const rel = await api.lib.create(folder, extra.title || '未命名心得');
+      const rel = await api.lib.create(folder, extra.title || '未命名文章');
       if (extra.works) {
         const a = await api.lib.read(rel);
         await api.lib.write(rel, { ...a.meta, works: extra.works }, a.body);
@@ -385,7 +385,7 @@ export default function App() {
   }
 
   const selLabel =
-    sel.kind === 'all' && query.trim() ? '全部文章' : sel.kind === 'all' && mode !== 'blog' ? `${MODE_LABEL[mode]} 心得` : selectionLabel(sel, settings.collections);
+    sel.kind === 'all' && query.trim() ? '全部文章' : sel.kind === 'all' && mode !== 'blog' ? `${MODE_LABEL[mode]} 文章` : selectionLabel(sel, settings.collections);
 
   return (
     <div className="app" style={style} onClick={() => menu && setMenu(null)} onContextMenu={textMenu}>
@@ -451,7 +451,7 @@ export default function App() {
             </div>
             <button className="btn primary" onClick={() => createArticle()}>
               <Icon name="plus" size={16} />
-              新增心得
+              新增文章
             </button>
             <button className="icon-btn" onClick={() => setShowSettings('look')} title="設定">
               <Icon name="sliders" size={18} />
@@ -547,10 +547,10 @@ export default function App() {
                   <EmptyLibrary onCreate={() => createArticle()} />
                 ) : base.length === 0 ? (
                   <div className="empty-note">
-                    沒有屬於{MODE_LABEL[mode]}的心得。這個模式收主題含「{mode === 'gal' ? 'gal' : '動畫'}」、或連結到{mode === 'gal' ? '遊戲' : '動畫'}作品的文章，在文章裡改「主題」或連結作品就會出現；切到「部落格」可以看到全部。
+                    沒有屬於{MODE_LABEL[mode]}的文章。這個模式收主題含「{mode === 'gal' ? 'gal' : '動畫'}」、或連結到{mode === 'gal' ? '遊戲' : '動畫'}作品的文章，在文章裡改「主題」或連結作品就會出現；切到「部落格」可以看到全部。
                   </div>
                 ) : visible.length === 0 ? (
-                  <div className="empty-note">沒有符合的心得。換個關鍵字，或清除篩選看看。</div>
+                  <div className="empty-note">沒有符合的文章。換個關鍵字，或清除篩選看看。</div>
                 ) : mode === 'blog' ? (
                   <BlogView list={visible} ctx={ctx} query={query} />
                 ) : (
@@ -627,7 +627,7 @@ function selectionLabel(sel, collections) {
       return c ? c.name : '動態收藏';
     }
     default:
-      return '全部心得';
+      return '全部文章';
   }
 }
 
@@ -657,10 +657,10 @@ function Welcome({ onChoose, style }) {
 function EmptyLibrary({ onCreate }) {
   return (
     <div className="welcome small">
-      <h2>書架還是空的</h2>
+      <h2>還沒有文章</h2>
       <button className="btn primary" onClick={onCreate}>
         <Icon name="plus" size={16} />
-        新增心得
+        新增文章
       </button>
     </div>
   );

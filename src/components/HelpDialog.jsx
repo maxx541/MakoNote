@@ -1,65 +1,83 @@
 import Icon from './Icon.jsx';
 import logo from '../assets/logo.png';
+import shelf from '../assets/help/shelf.webp';
+import game from '../assets/help/game.webp';
+import editor from '../assets/help/editor.webp';
+import slash from '../assets/help/slash.webp';
+import smart from '../assets/help/smart.webp';
+import ocr from '../assets/help/ocr.webp';
+import baha from '../assets/help/baha.webp';
 
 export const TAGLINE = '專為 Galgame 與動畫愛好者設計的筆記軟體';
 
 const K = ({ children }) => <kbd>{children}</kbd>;
 
-// 使用說明的內容。畫面上其他地方不放說明文字，要查怎麼用都在這裡
-const SECTIONS = [
+// 使用說明：一個功能一張圖，旁邊只寫「這是什麼」和幾個重點。畫面上其他地方不放操作說明
+const FEATURES = [
   {
-    title: '開始',
-    items: [
-      <>文章庫就是你選的一個資料夾：一篇心得一個資料夾，內文是 Markdown，圖片放在旁邊的 <code>assets/</code>。不開這個程式，用記事本或 Obsidian 也讀得到。</>,
-      <>按右上的「新增心得」開始寫；寫完按「完工」，會記下完工日與這篇花的撰寫時間（只算視窗在前景、而且有在輸入的時間）。</>,
-      <>文章庫位置在 設定 → 文章庫 可以換。</>,
+    title: '作品牆：以作品為中心',
+    img: shelf,
+    lead: '每篇文章都連結到一部作品。依作品排成封面牆，Galgame、動畫、部落格三種檢視隨時切換。',
+    points: [
+      <>寫文章時按「連結作品」，從 VNDB、Bangumi 帶入封面與資料；上方「配對作品」可一次配很多篇。</>,
+      <><K>Ctrl</K> + <K>K</K> 搜尋整個文章庫，<K>Ctrl</K> + <K>B</K> 收起側邊欄。</>,
+      <>把文章拖到左邊的資料夾就會搬移檔案。</>,
     ],
   },
   {
-    title: '書架',
-    items: [
-      <>Galgame、動畫、部落格三種模式：依文章的「主題」分類，連結到該類作品的心得也會一起出現。左邊的資料夾樹永遠顯示整個文章庫，不受模式影響。</>,
-      <><K>Ctrl</K> + <K>K</K> 搜尋整個文章庫（標題、作品名、標籤、內文）。<K>Ctrl</K> + <K>B</K> 收起或展開側邊欄。</>,
-      <>文章可以拖到左邊的資料夾；在文章或作品上按右鍵有更多動作。點作品進入作品頁，可以更換封面（也能直接把圖片拖到橫幅上）、重新配對作品。</>,
-      <>作品資料和封面來自 VNDB 與 Bangumi；寫文章時用「連結作品」配對，書架上方可以批次配對。</>,
+    title: '作品頁：一部作品的全部',
+    img: game,
+    lead: '點封面進入作品頁：這部作品所有的文章、完成數、總共花了多少時間。',
+    points: [
+      <>「更換封面」，或直接把圖片拖到橫幅上。</>,
+      <>作品配錯了按「重新配對」，勾選的文章會一起改連過去。</>,
     ],
   },
   {
-    title: '寫作',
-    items: [
-      <>在空行輸入 <K>/</K> 叫出方塊選單（標題、清單、摺疊、圖片、影片、提示框、時數統計表…）；按右鍵有常用動作，可以在 設定 → 撰寫 自訂。</>,
-      <>選取文字會出現格式工具列，可以改段落類型、粗體、連結，也能「連結到段落」跳到文中別處。<K>Ctrl</K> + <K>Z</K> 復原，連文章屬性的修改也一起復原。</>,
-      <>「智能分段」：用句號判斷一段話結束了沒。沒有句號時按 <K>Enter</K> 只換行、留在同一個文字塊；連按兩次或 <K>Ctrl</K> + <K>Enter</K> 開新的；貼上多行文字會依句號重新分段；也能一鍵把被切碎的文字塊併回去。句尾符號可以自訂。</>,
-      <>右上角「版面」按鈕開啟側邊面板：字型、行距、寬度、背景圖、遮罩，邊寫邊調、立刻看到效果。</>,
+    title: '寫作：專心寫，不被格式打斷',
+    img: editor,
+    lead: '背景是這部作品的封面，跟著文章一起捲動。右上角「版面」可以邊寫邊調字型、寬度、背景。',
+    points: [
+      <>選取文字會出現格式工具列；<K>Ctrl</K> + <K>Z</K> 連文章屬性的修改也能復原。</>,
+      <>「完工」會記下完工日與撰寫時間（只算視窗在前景、而且有在輸入的時間）。</>,
+      <><K>Ctrl</K> + 滾輪整個介面縮放，<K>Ctrl</K> + <K>0</K> 還原。</>,
     ],
   },
   {
-    title: '圖片與影片',
-    items: [
-      <>圖片可以貼上、拖進來或用選單插入。一次放多張會自動併排（每排最多 4 張）。</>,
-      <>把圖片拖到另一張圖或同一排的左右側就併排；拖到有字的段落左右側，就變成圖文並排。拖兩張之間的分隔線調整大小，接近同大小會吸附。</>,
-      <>貼上單獨一個 YouTube 或 bilibili 網址會變成內嵌播放器，拖右下角等比例縮放。</>,
+    title: '方塊選單：輸入 / 就能插入',
+    img: slash,
+    lead: '標題、清單、摺疊、圖片、影片、提示框、表格，最上面是 MakoNote 專屬的「插入遊戲台詞」與「時數統計表」。',
+    points: [
+      <>貼上或拖進圖片，一次放多張會自動併排；拖到另一張圖或有字的段落旁邊就併排，拖分隔線調大小。</>,
+      <>貼上單獨一個 YouTube 或 bilibili 網址，變成可直接播放的內嵌播放器。</>,
+      <>按右鍵有常用動作，可在 設定 → 撰寫 自訂。</>,
     ],
   },
   {
-    title: '遊戲台詞辨識',
-    items: [
-      <>輸入 <K>/</K> 台詞，或右鍵選「插入遊戲台詞」：選、貼上或拖入一到多張截圖，用 Windows 內建 OCR 辨識（圖片不會上傳），依順序合併成引用。</>,
-      <>內建排除表會拿掉遊戲介面的字（SAVE、AUTO、SKIP、LOG、返回、存檔…），也可以加自己的忽略字詞；結果可以先修改再插入。</>,
+    title: '智能分段：用句號判斷一段話說完沒',
+    img: smart,
+    lead: '沒有句號就代表還沒說完，下一行留在同一個文字塊；被切碎的文字塊也能一鍵併回去。',
+    points: [
+      <>按 <K>Enter</K> 沒句號只換行；連按兩次或 <K>Ctrl</K> + <K>Enter</K> 才開新的。</>,
+      <>貼上多行文字依句號重新分段；句尾符號可以自訂。</>,
     ],
   },
   {
-    title: '發佈到各平台',
-    items: [
-      <>編輯頁上方的分頁可以預覽成 Markdown、巴哈、FB、串文（Threads、X、Bluesky）、Google 文件格式。點了只是預覽，修改後才會建立獨立版本，不影響主稿。</>,
-      <>文章屬性的「雲端」可以把圖片與文章備份到 Cloudinary，並把巴哈、Markdown 版本換成雲端網址（金鑰在 設定 → 雲端）。</>,
+    title: '遊戲台詞：截圖丟進來就是文字',
+    img: ocr,
+    lead: '選、貼上或拖入一到多張截圖，用 Windows 內建 OCR 在本機辨識（圖片不會上傳），依順序合併成引用。',
+    points: [
+      <>內建排除表會自動拿掉 SAVE、AUTO、SKIP、LOG、返回、存檔這類遊戲介面的字。</>,
+      <>也可加自己的忽略字詞，結果可先修改再插入。</>,
     ],
   },
   {
-    title: '外觀與快捷鍵',
-    items: [
-      <>整個介面縮放：<K>Ctrl</K> + 滾輪，或 <K>Ctrl</K> + <K>+</K> / <K>-</K>，<K>Ctrl</K> + <K>0</K> 還原。</>,
-      <>設定裡有背景圖、遮罩、字型、主題、小貼圖等。外觀可以存成主題帶去別台電腦。</>,
+    title: '一篇文章，隨處分享',
+    img: baha,
+    lead: '編輯頁上方的分頁，同一篇文章預覽成巴哈、FB、串文、Google 文件、Markdown 的樣子。',
+    points: [
+      <>點分頁只是預覽，修改後才另存成該格式的版本，主稿不受影響。</>,
+      <>文章屬性的「雲端」可把圖片備份到 Cloudinary，並換成雲端網址（金鑰在 設定 → 雲端）。</>,
     ],
   },
 ];
@@ -80,14 +98,23 @@ export default function HelpDialog({ onClose }) {
           </button>
         </div>
         <div className="help-body">
-          {SECTIONS.map((s) => (
-            <section key={s.title}>
-              <h3>{s.title}</h3>
-              <ul>
-                {s.items.map((it, i) => (
-                  <li key={i}>{it}</li>
-                ))}
-              </ul>
+          <p className="help-intro">
+            你的文章就是你選的資料夾裡的 Markdown：一篇一個資料夾，圖片放旁邊。不開 MakoNote，用記事本也讀得到。按右上角「新增文章」開始寫。
+          </p>
+          {FEATURES.map((f) => (
+            <section key={f.title} className="help-feature">
+              <figure>
+                <img src={f.img} alt={f.title} loading="lazy" />
+              </figure>
+              <div>
+                <h3>{f.title}</h3>
+                <p className="help-lead">{f.lead}</p>
+                <ul>
+                  {f.points.map((p, i) => (
+                    <li key={i}>{p}</li>
+                  ))}
+                </ul>
+              </div>
             </section>
           ))}
         </div>

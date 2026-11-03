@@ -15,8 +15,8 @@ const SOURCES = [
   { id: 'bgm-anime', label: 'Bangumi（動畫）', source: 'bangumi', types: 'anime', kind: '動畫' },
 ];
 
-// 作品詳細頁的「重新配對」：這部作品配錯時，搜尋正確的作品，把這部作品底下勾選的心得改連到新的作品。
-// 只改心得開頭屬性裡的作品編號，正文不動；其他作品連結保留。
+// 作品詳細頁的「重新配對」：這部作品配錯時，搜尋正確的作品，把這部作品底下勾選的文章改連到新的作品。
+// 只改文章開頭屬性裡的作品編號，正文不動；其他作品連結保留。
 export default function RematchDialog({ game, articles, onDone, onClose, notify }) {
   const guess = workMode(game) === 'anime' ? 'bgm-anime' : game.source === 'bangumi' ? 'bgm-game' : 'vndb';
   const [src, setSrc] = useState(guess);
@@ -79,7 +79,7 @@ export default function RematchDialog({ game, articles, onDone, onClose, notify 
           await api.lib.updateMeta(a.rel, { works });
         }
       }
-      notify(`已把 ${list.length} 篇心得改連到「${target.titleCn || target.title}」`);
+      notify(`已把 ${list.length} 篇文章改連到「${target.titleCn || target.title}」`);
       onDone(target.id);
     } catch (e) {
       notify('寫入失敗：' + errMsg(e));
@@ -136,7 +136,7 @@ export default function RematchDialog({ game, articles, onDone, onClose, notify 
         </div>
 
         <div className="rematch-articles">
-          <div className="muted small">要改連結的心得（{checked.size} / {articles.length}）</div>
+          <div className="muted small">要改連結的文章（{checked.size} / {articles.length}）</div>
           {articles.map((a) => (
             <label key={a.rel} className="rematch-art">
               <input type="checkbox" checked={checked.has(a.rel)} onChange={() => toggle(a.rel)} />

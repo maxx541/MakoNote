@@ -6,7 +6,7 @@ import { StatusPill } from './LibraryViews.jsx';
 import { startArticleDrag } from './Sidebar.jsx';
 import { shortDate, fmtDuration, articleThumb, gameCoverUrl, SOURCE_LABEL } from '../lib/util.js';
 
-// 單一作品的詳細頁：上方橫幅、作品資訊，下面列出所有心得
+// 單一作品的詳細頁：上方橫幅、作品資訊，下面列出所有文章
 export default function GamePage({ id, ctx, onBack }) {
   const [rematch, setRematch] = useState(false);
   const { games, articles } = ctx.data;
@@ -25,7 +25,7 @@ export default function GamePage({ id, ctx, onBack }) {
     <div className="game-page">
       <button className="btn ghost back" onClick={onBack}>
         <Icon name="back" size={16} />
-        返回書架
+        返回
       </button>
 
       <section ref={heroRef} className={'hero' + (heroOver ? ' drop-over' : '')}>
@@ -49,7 +49,7 @@ export default function GamePage({ id, ctx, onBack }) {
             <div className="stats">
               <div>
                 <b>{list.length}</b>
-                <span>篇心得</span>
+                <span>篇文章</span>
               </div>
               <div>
                 <b>{done}</b>
@@ -61,9 +61,9 @@ export default function GamePage({ id, ctx, onBack }) {
               </div>
             </div>
             <div className="row">
-              <button className="btn primary" onClick={() => ctx.createArticle({ works: [id], title: `${g.title} 心得` })}>
+              <button className="btn primary" onClick={() => ctx.createArticle({ works: [id], title: g.title })}>
                 <Icon name="plus" size={16} />
-                為這部作品新增心得
+                為這部作品新增文章
               </button>
               <button className="btn" onClick={() => setRematch(true)} title="這部作品配錯時，重新搜尋並改連到正確的作品">
                 <Icon name="link" size={16} />

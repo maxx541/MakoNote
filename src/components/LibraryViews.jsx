@@ -87,9 +87,9 @@ export function BlogView({ list, ctx, query }) {
   );
 }
 
-// ---------- Galgame 模式：作品當書架，心得在右側展開；沒連結作品的文章獨立上架 ----------
+// ---------- Galgame 模式：以作品為中心，文章在右側展開；沒連結作品的文章獨立一格 ----------
 
-// 依清單順序（已排好序）組出書架上的項目：一部作品一格、一篇獨立文章一格
+// 依清單順序（已排好序）組出作品牆上的項目：一部作品一格、一篇獨立文章一格
 export function shelfItems(list) {
   const items = [];
   const byGame = new Map();
@@ -247,7 +247,7 @@ function GamePanel({ id, articles, ctx, query, onOpenGame }) {
         <div>
           <div className="gpanel-title">{g ? g.title : id}</div>
           <div className="muted small">
-            {[g && g.developers && g.developers.join('、'), g && g.released && g.released.slice(0, 4), `${articles.length} 篇心得`]
+            {[g && g.developers && g.developers.join('、'), g && g.released && g.released.slice(0, 4), `${articles.length} 篇文章`]
               .filter(Boolean)
               .join(' · ')}
           </div>
@@ -271,9 +271,9 @@ function GamePanel({ id, articles, ctx, query, onOpenGame }) {
         ))}
       </div>
       <div className="gpanel-actions">
-        <button className="btn" onClick={() => ctx.createArticle({ works: [id], title: `${g ? g.title : id} 心得` })}>
+        <button className="btn" onClick={() => ctx.createArticle({ works: [id], title: g ? g.title : id })}>
           <Icon name="plus" size={16} />
-          新增心得
+          新增文章
         </button>
         <button className="btn ghost" onClick={() => onOpenGame(id)}>
           詳細頁

@@ -356,12 +356,12 @@ function writeArticle(root, rel, meta, body) {
 
 function createArticle(root, folderRel, title) {
   const parent = resolveInside(root, folderRel || '');
-  const abs = uniquePath(parent, safeName(title || '未命名心得'));
+  const abs = uniquePath(parent, safeName(title || '未命名文章'));
   fs.mkdirSync(path.join(abs, 'assets'), { recursive: true });
   const stamp = nowStamp();
   const meta = {
     id: newId(),
-    title: title || '未命名心得',
+    title: title || '未命名文章',
     status: '撰寫中',
     tags: [],
     created: stamp,

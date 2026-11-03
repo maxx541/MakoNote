@@ -62,7 +62,7 @@ const config = {
     ({
       image: 'img/shots/shelf.webp',
       metadata: [
-        {name: 'description', content: 'MakoNote：專為 Galgame 與動畫愛好者設計的筆記軟體。作品就是書架、截圖台詞一鍵成文、一篇心得直接輸出巴哈、FB、串文，文章永遠是你資料夾裡的 Markdown。'},
+        {name: 'description', content: 'MakoNote：專為 Galgame 與動畫愛好者設計的筆記軟體。以作品為中心管理與展示文章，截圖台詞一鍵成文，一篇文章直接輸出巴哈、FB、串文，內容永遠是你資料夾裡的 Markdown。'},
       ],
       colorMode: {
         defaultMode: 'dark',
@@ -76,10 +76,10 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
-          {to: '/#different', label: '有什麼不同', position: 'left', activeBaseRegex: '^$'},
+          {to: '/#highlights', label: '軟體特色', position: 'left', activeBaseRegex: '^$'},
           {to: '/#features', label: '功能', position: 'left', activeBaseRegex: '^$'},
           {type: 'docSidebar', sidebarId: 'guide', position: 'left', label: '使用說明'},
-          {href: DOWNLOAD_URL, label: '下載', position: 'right', className: 'navbar-download'},
+          {href: DOWNLOAD_URL, label: '下載 exe', position: 'right', className: 'navbar-download'},
         ],
       },
       footer: {

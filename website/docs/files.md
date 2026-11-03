@@ -5,11 +5,11 @@ sidebar_position: 8
 
 # 檔案格式
 
-MakoNote 不用資料庫。資料夾就是資料庫，每篇心得都是普通的 Markdown。
+MakoNote 不用資料庫。資料夾就是資料庫，每篇文章都是普通的 Markdown。
 
 ```text
-我的心得/
-├─ galgame心得/
+我的文章/
+├─ galgame文章/
 │  └─ 純白交響曲/
 │     ├─ ai-li.md          ← 內文與屬性
 │     └─ assets/           ← 圖片
@@ -23,8 +23,8 @@ MakoNote 不用資料庫。資料夾就是資料庫，每篇心得都是普通�
 ---
 title: 愛理
 status: 撰寫中
-topic: galgame心得
-tags: [心得, 純白交響曲]
+topic: galgame文章
+tags: [文章, 純白交響曲]
 works: [v1552]
 created: 2026-10-28 21:04
 active_seconds: 780

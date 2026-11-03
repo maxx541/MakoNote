@@ -362,7 +362,7 @@ export default function Editor({ rel, isNew, ctx, facets, backdrop, onClose }) {
       <div className="editor-bar">
         <button className="btn ghost" onClick={close} disabled={closing}>
           <Icon name="back" size={16} />
-          書架
+          返回
         </button>
         <div className="seg-group format-tabs">
           <button className={'seg' + (tab === 'master' ? ' on' : '')} onClick={() => switchTab('master')}>
@@ -589,7 +589,7 @@ export default function Editor({ rel, isNew, ctx, facets, backdrop, onClose }) {
 
       {gameOpen && (
         <GameDialog
-          initial={meta.works.length ? '' : meta.title.replace(/\s*心得$/, '')}
+          initial={meta.works.length ? '' : meta.title.replace(/\s*(心得|文章)$/, '')}
           onClose={() => setGameOpen(false)}
           onPick={async (game) => {
             setGameOpen(false);

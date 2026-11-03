@@ -5,7 +5,7 @@ sidebar_position: 5
 
 # 遊戲台詞辨識
 
-寫心得最常做的事之一，就是引用遊戲裡的台詞。MakoNote 讓你直接丟截圖。
+寫文章最常做的事之一，就是引用遊戲裡的台詞。MakoNote 讓你直接丟截圖。
 
 ![插入遊戲台詞](/img/shots/ocr.webp)
 

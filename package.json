@@ -1,7 +1,7 @@
 {
   "name": "makonote",
   "productName": "MakoNote",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "MakoNote：專為 Galgame 與動畫愛好者設計的筆記軟體",
   "main": "electron/main.cjs",
@@ -63,7 +63,7 @@
       ]
     },
     "portable": {
-      "artifactName": "MakoNote-${version}-portable.exe"
+      "artifactName": "MakoNote-portable.exe"
     }
   }
 }

@@ -163,7 +163,7 @@ export default function WorkMatchDialog({ mode, articles, games, onDone, onClose
         </div>
 
         <div className="match-list">
-          {rows.length === 0 && <div className="muted">目前清單裡的{MODE_LABEL[mode]}心得都已經連結作品了。</div>}
+          {rows.length === 0 && <div className="muted">目前清單裡的{MODE_LABEL[mode]}文章都已經連結作品了。</div>}
           {rows.map((r) => {
             const pick = (r.results || []).find((w) => w.id === r.pick);
             return (

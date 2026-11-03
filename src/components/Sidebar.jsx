@@ -122,7 +122,7 @@ export default function Sidebar({
   return (
     <aside className={"sidebar" + (hidden ? " hidden" : "")} aria-hidden={hidden}>
       <section>
-        <Item kind="all" icon="layers" label="全部心得" n={data.articles.length} />
+        <Item kind="all" icon="layers" label="全部文章" n={data.articles.length} />
         {STATUSES.map((s) => (
           <Item key={s} kind="status" value={s} icon={s === '完成' ? 'check' : 'pen'} label={s} n={count((a) => a.meta.status === s)} />
         ))}

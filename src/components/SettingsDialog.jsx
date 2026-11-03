@@ -225,7 +225,7 @@ function StickerTab({ st, setStickers, folders }) {
         貼圖的位置底下有卡片或文字時先藏起來（只在空白處出現）
       </label>
       <div className="field">
-        <label>書架列出的文章超過幾篇就不顯示</label>
+        <label>目前列出的文章超過幾篇就不顯示</label>
         <select value={st.maxArticles} onChange={(e) => setStickers({ maxArticles: Number(e.target.value) })}>
           {[0, 6, 12, 20, 30, 50].map((v) => (
             <option key={v} value={v}>
