@@ -14,6 +14,8 @@ sidebar_position: 2
 
 左邊的資料夾樹永遠顯示整個文章庫，不受模式影響。
 
+<video src="/MakoNote/video/wall.mp4" poster="/MakoNote/video/wall.jpg" autoPlay loop muted playsInline controls aria-label="作品牆" style={{width: '100%', borderRadius: 10, border: '1px solid rgba(255,255,255,0.12)'}} />
+
 ## 作品資料
 
 寫文章時按「連結作品」，從 VNDB（遊戲）或 Bangumi（動畫）搜尋，封面、品牌、發售日會自動帶進來。作品牆上方的「配對作品」可以一次幫很多篇配對。
@@ -23,7 +25,8 @@ sidebar_position: 2
 - **更換封面**：按按鈕選圖，或直接把圖片拖到橫幅上。
 - **重新配對**：作品配錯時，搜尋正確的作品，勾選的文章會改連過去。
 
-![作品頁](/img/shots/game.webp)
+<video src="/MakoNote/video/detail.mp4" poster="/MakoNote/video/detail.jpg" autoPlay loop muted playsInline controls aria-label="作品頁" style={{width: '100%', borderRadius: 10, border: '1px solid rgba(255,255,255,0.12)'}} />
+
 
 ## 找文章
 

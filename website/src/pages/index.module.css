@@ -433,6 +433,29 @@
   font-size: 17px;
 }
 
+.clip {
+  margin: 0;
+}
+.clip video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 750;
+  background: #0d1016;
+}
+.clip figcaption {
+  margin-top: 16px;
+  color: var(--mk-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.clip figcaption b {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--mk-text);
+  font-size: 17px;
+}
+
 /* ---------- 資料夾 ---------- */
 
 .filesGrid {

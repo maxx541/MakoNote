@@ -2915,6 +2915,7 @@ textarea.ocr-text:focus {
   border: 1px solid var(--line-strong);
   background: #0d1016;
 }
+.help-feature figure video,
 .help-feature figure img {
   display: block;
   width: 100%;

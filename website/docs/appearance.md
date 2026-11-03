@@ -13,6 +13,8 @@ sidebar_position: 7
 - 外觀可以存成主題（`.app/themes/`），帶到別台電腦。
 - 小貼圖：指定一個圖片資料夾，畫面角落會隨機出現一張，蓋到內容時自動藏起來。
 
+<video src="/MakoNote/video/look.mp4" poster="/MakoNote/video/look.jpg" autoPlay loop muted playsInline controls aria-label="邊寫邊調版面" style={{width: '100%', borderRadius: 10, border: '1px solid rgba(255,255,255,0.12)'}} />
+
 ## 快捷鍵
 
 | 按鍵 | 作用 |

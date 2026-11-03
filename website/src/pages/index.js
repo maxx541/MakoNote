@@ -93,6 +93,14 @@ const GALLERY = [
   {shot: 'editor-top', title: '作品封面當背景', body: '編輯頁的背景是這部作品的封面，跟著文章一起捲動。'},
 ];
 
+// 動態示範：從程式實際操作錄下來的影片（靜音、循環、進入畫面才播放）
+const CLIPS = [
+  {name: 'wall', title: '作品牆：切換、搜尋、點開就看', body: '依作品排成封面牆；點封面右邊就出現這部作品的文章，Galgame、動畫、部落格一鍵切換，打字就搜尋。'},
+  {name: 'detail', title: '作品頁：一部作品的全部', body: '封面、品牌、完成數、總撰寫時間，加上這部作品所有的文章。點進去就開始寫。'},
+  {name: 'menu', title: '右鍵選單：常用的自己決定', body: '在右鍵選單的「自訂」裡勾選要放的動作、拿掉不用的，下次按右鍵就是你的版本。'},
+  {name: 'look', title: '美化：邊寫邊調', body: '字型、字級、行距、編輯區寬度，背景遮罩、模糊、面板透明度，拉一下就在文章上看到效果。'},
+];
+
 const DETAILS = [
   {title: '撰寫時間', body: '只算真的在寫的時間，完工後自動暫停。'},
   {title: '智能分段', body: '句尾符號可以自訂，Enter、貼上、整理都適用。'},
@@ -209,9 +217,7 @@ function Hero() {
           Galgame・動畫・作品
         </p>
         <h1 className={styles.heroTitle}>
-          以作品為中心，
-          <br />
-          整理你寫過的每一篇文章。
+          MakoNote
         </h1>
         <p className={styles.heroLead}>
           專為 Galgame 與動畫愛好者設計的筆記軟體。
@@ -295,6 +301,60 @@ function Chapters() {
           </div>
         </article>
       ))}
+    </section>
+  );
+}
+
+function Clip({name, title, body}) {
+  const ref = useRef(null);
+  const mp4 = useBaseUrl(`/video/${name}.mp4`);
+  const poster = useBaseUrl(`/video/${name}.jpg`);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || !('IntersectionObserver' in window)) return undefined;
+    // 看得到才播放，滑走就暫停，省電也不吵
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) v.play().catch(() => {});
+      else v.pause();
+    }, {threshold: 0.35});
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <figure className={styles.clip} data-reveal>
+      <div className={styles.frame}>
+        <div className={styles.frameBar} aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </div>
+        <video ref={ref} muted loop playsInline preload="none" poster={poster} aria-label={title}>
+          <source src={mp4} type="video/mp4" />
+        </video>
+      </div>
+      <figcaption>
+        <b>{title}</b>
+        {body}
+      </figcaption>
+    </figure>
+  );
+}
+
+function Demos() {
+  return (
+    <section id="demo" className={styles.section}>
+      <div className={styles.sectionHead} data-reveal>
+        <p className={styles.kicker}>動態示範</p>
+        <h2 className={styles.h2}>
+          <Phrase text="看它怎麼動。" />
+        </h2>
+        <p className={styles.lead}>每一段都是直接從 MakoNote 裡操作錄下來的。</p>
+      </div>
+      <div className={styles.gallery}>
+        {CLIPS.map((c) => (
+          <Clip key={c.name} {...c} />
+        ))}
+      </div>
     </section>
   );
 }
@@ -404,6 +464,7 @@ export default function Home() {
         <Hero />
         <Features />
         <Chapters />
+        <Demos />
         <Gallery />
         <Files />
         <Details />

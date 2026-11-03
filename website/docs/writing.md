@@ -14,7 +14,10 @@ sidebar_position: 3
 ![斜線選單](/img/shots/slash.webp)
 
 - 選取文字會出現格式工具列：段落類型、粗體、顏色、對齊、連結，也能「連結到段落」，閱讀時點了會捲到那一段。
-- 按右鍵有常用動作，內容可以在 設定 → 撰寫 自訂。
+- 按右鍵有常用動作，內容可以在 設定 → 撰寫 自訂（下面的動畫示範怎麼挑）。
+
+<video src="/MakoNote/video/menu.mp4" poster="/MakoNote/video/menu.jpg" autoPlay loop muted playsInline controls aria-label="自訂右鍵選單" style={{width: '100%', borderRadius: 10, border: '1px solid rgba(255,255,255,0.12)'}} />
+
 - <kbd>Ctrl</kbd> + <kbd>Z</kbd> 復原，連文章屬性（狀態、作品、標題）的修改也在同一條時間線上。
 
 ## 智能分段
